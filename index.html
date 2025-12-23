@@ -1,61 +1,49 @@
-<svg viewBox="-100 -100 200 200" width="400">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Character Wheel</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-  <!-- DEFINITIONS (GIF FILLS) -->
-  <defs>
-    <pattern id="char1" patternUnits="objectBoundingBox" width="1" height="1">
-      <image href="char1.gif" width="200" height="200" />
-    </pattern>
+<div class="wheel-container">
+  <svg viewBox="-100 -100 200 200" class="wheel">
 
-    <pattern id="char2" patternUnits="objectBoundingBox" width="1" height="1">
-      <image href="char2.gif" width="200" height="200" />
-    </pattern>
+    <!-- Patterns for GIFs -->
+    <defs>
+      <pattern id="char1" patternUnits="userSpaceOnUse" width="200" height="200">
+        <image href="char1.gif" width="200" height="200" preserveAspectRatio="xMidYMid slice"/>
+      </pattern>
+      <pattern id="char2" patternUnits="userSpaceOnUse" width="200" height="200">
+        <image href="char2.gif" width="200" height="200" preserveAspectRatio="xMidYMid slice"/>
+      </pattern>
+      <pattern id="char3" patternUnits="userSpaceOnUse" width="200" height="200">
+        <image href="char3.gif" width="200" height="200" preserveAspectRatio="xMidYMid slice"/>
+      </pattern>
+      <pattern id="char4" patternUnits="userSpaceOnUse" width="200" height="200">
+        <image href="char4.gif" width="200" height="200" preserveAspectRatio="xMidYMid slice"/>
+      </pattern>
+      <pattern id="char5" patternUnits="userSpaceOnUse" width="200" height="200">
+        <image href="char5.gif" width="200" height="200" preserveAspectRatio="xMidYMid slice"/>
+      </pattern>
+      <pattern id="char6" patternUnits="userSpaceOnUse" width="200" height="200">
+        <image href="char6.gif" width="200" height="200" preserveAspectRatio="xMidYMid slice"/>
+      </pattern>
+    </defs>
 
-    <pattern id="char3" patternUnits="objectBoundingBox" width="1" height="1">
-      <image href="char3.gif" width="200" height="200" />
-    </pattern>
+    <!-- Slices -->
+    <path d="M0 0 L100 0 A100 100 0 0 1 50 86 Z" fill="url(#char1)" class="slice" data-character="1"/>
+    <path d="M0 0 L50 86 A100 100 0 0 1 -50 86 Z" fill="url(#char2)" class="slice" data-character="2"/>
+    <path d="M0 0 L-50 86 A100 100 0 0 1 -100 0 Z" fill="url(#char3)" class="slice" data-character="3"/>
+    <path d="M0 0 L-100 0 A100 100 0 0 1 -50 -86 Z" fill="url(#char4)" class="slice" data-character="4"/>
+    <path d="M0 0 L-50 -86 A100 100 0 0 1 50 -86 Z" fill="url(#char5)" class="slice" data-character="5"/>
+    <path d="M0 0 L50 -86 A100 100 0 0 1 100 0 Z" fill="url(#char6)" class="slice" data-character="6"/>
 
-    <pattern id="char4" patternUnits="objectBoundingBox" width="1" height="1">
-      <image href="char4.gif" width="200" height="200" />
-    </pattern>
+  </svg>
+</div>
 
-    <pattern id="char5" patternUnits="objectBoundingBox" width="1" height="1">
-      <image href="char5.gif" width="200" height="200" />
-    </pattern>
-
-    <pattern id="char6" patternUnits="objectBoundingBox" width="1" height="1">
-      <image href="char6.gif" width="200" height="200" />
-    </pattern>
-  </defs>
-
-  <!-- SLICES -->
-  <path d="M0 0 L100 0 A100 100 0 0 1 50 86 Z"
-        fill="url(#char1)"
-        class="slice"
-        data-character="1"/>
-
-  <path d="M0 0 L50 86 A100 100 0 0 1 -50 86 Z"
-        fill="url(#char2)"
-        class="slice"
-        data-character="2"/>
-
-  <path d="M0 0 L-50 86 A100 100 0 0 1 -100 0 Z"
-        fill="url(#char3)"
-        class="slice"
-        data-character="3"/>
-
-  <path d="M0 0 L-100 0 A100 100 0 0 1 -50 -86 Z"
-        fill="url(#char4)"
-        class="slice"
-        data-character="4"/>
-
-  <path d="M0 0 L-50 -86 A100 100 0 0 1 50 -86 Z"
-        fill="url(#char5)"
-        class="slice"
-        data-character="5"/>
-
-  <path d="M0 0 L50 -86 A100 100 0 0 1 100 0 Z"
-        fill="url(#char6)"
-        class="slice"
-        data-character="6"/>
-
-</svg>
+<script src="script.js"></script>
+</body>
+</html>
