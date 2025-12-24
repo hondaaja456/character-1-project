@@ -17,6 +17,8 @@ body {
 .wheel {
   width: 100%;
   height: 100%;
+  transform: rotate(15deg); 
+  transform-origin: 50% 50%;
 }
 
 .slice {
