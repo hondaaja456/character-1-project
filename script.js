@@ -11,7 +11,7 @@ const characters = [
   },
   {
     name: "Character 2",
-    gif: "char2.gif",
+    gif: "https://hondaaja456.github.io/character-1-project/tigor.jpg",
     level: 2,
     intimacy: 5,
     weapon: "Bow",
@@ -21,7 +21,7 @@ const characters = [
   },
   {
     name: "Character 3",
-    gif: "char3.gif",
+    gif: "https://hondaaja456.github.io/character-1-project/tigor.jpg",
     level: 3,
     intimacy: 10,
     weapon: "Hammer",
@@ -31,7 +31,7 @@ const characters = [
   },
   {
     name: "Character 4",
-    gif: "char4.gif",
+    gif: "https://hondaaja456.github.io/character-1-project/tigor.jpg",
     level: 4,
     intimacy: 15,
     weapon: "Staff",
@@ -41,7 +41,7 @@ const characters = [
   },
   {
     name: "Character 5",
-    gif: "char5.gif",
+    gif: "https://hondaaja456.github.io/character-1-project/tigor.jpg",
     level: 5,
     intimacy: 20,
     weapon: "Dagger",
@@ -51,7 +51,7 @@ const characters = [
   },
   {
     name: "Character 6",
-    gif: "char6.gif",
+    gif: "https://hondaaja456.github.io/character-1-project/tigor.jpg",
     level: 6,
     intimacy: 25,
     weapon: "Axe",
@@ -60,6 +60,10 @@ const characters = [
     color: "#2c3e50",
   },
 ];
+
+// Modal references
+const modal = document.getElementById("character-modal");
+const closeModal = document.getElementById("close-modal");
 
 // Function to open the modal and set the character data
 function openModal(characterIndex) {
@@ -82,7 +86,12 @@ function openModal(characterIndex) {
   modal.style.display = "flex";
 }
 
-// Event listener to open modal when a slice is clicked
+// Function to close the modal
+closeModal.addEventListener("click", function() {
+  modal.style.display = "none";
+});
+
+// Add event listeners to each slice
 document.querySelectorAll(".slice").forEach((slice, index) => {
   slice.addEventListener("click", () => openModal(index));
 });
