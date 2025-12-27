@@ -16,12 +16,6 @@ const characters = [
     color: "#ff7e5f", 
     glowColor: "#ff3b30",
   },
-
-
-
-
-
-   },
   {
     name: "Character 2",
     gif: "https://hondaaja456.github.io/character-1-project/tigor.jpg",
@@ -31,12 +25,11 @@ const characters = [
     element: "Wind",
     skills: [
       {
-        name: "arrow storm",
-        description: "shots a magic arrow upwards splitting to thousands causing a storm of arrows coantinues damage in directed area.",
-        sideEffects: "causing a bouncing air magic to another foe damage when hits foe companion",
+        name: "Arrow Storm",
+        description: "Shoots a magic arrow upwards, splitting into thousands causing a storm of arrows.",
+        sideEffects: "Causes a bouncing air magic to hit another foe, damaging them.",
       }
     ],
-    
     color: "#feb47b", 
     glowColor: "#f39c12",
   },
@@ -49,9 +42,9 @@ const characters = [
     element: "Earth",
     skills: [
       {
-        name: "tetonic shock",
-        description: "meelee aoe damage surrounds big range of area.",
-        sideEffects: "slows enemy when it hits by 70% in 3 seconds, and buff your attack damage by 30% in 7s",
+        name: "Tectonic Shock",
+        description: "Melee AOE damage surrounds a large area of effect.",
+        sideEffects: "Slows enemy by 70% for 3 seconds, and buffs your attack damage by 30% for 7 seconds.",
       }
     ],
     color: "#8e44ad", 
@@ -66,11 +59,11 @@ const characters = [
     element: "Water",
     skills: [
       {
-        name: "tidal wave",
-        description: "dash towards foe with aquatic wave in high speed..",
-        sideEffects: "gives you a sheild 15% of your health, knocking back foe back.",
+        name: "Tidal Wave",
+        description: "Dash towards foe with an aquatic wave at high speed.",
+        sideEffects: "Gives you a shield worth 15% of your health and knocks back the foe.",
       }
-      ],
+    ],
     color: "#3498db", 
     glowColor: "#2980b9",
   },
@@ -83,9 +76,9 @@ const characters = [
     element: "Light",
     skills: [
       {
-        name: "celestial beam",
-        description: "shots 1 line magic beam in a very long range area",
-        sideEffects: "when hits foe it will cause damage and immobilized enemy in that area, when its hits ally it will heals them 50% of their health",
+        name: "Celestial Beam",
+        description: "Shoots a line magic beam in a very long range area.",
+        sideEffects: "When it hits an enemy, it causes damage and immobilizes the enemy. When it hits an ally, it heals them by 50% of their health.",
       }
     ],
     color: "#f1c40f", 
@@ -100,22 +93,15 @@ const characters = [
     element: "Dark",
     skills: [
       {
-        name: "terror haze",
-        description: "spray out dark haze in large choosen area",
-        sideEffects: "when allly or user inside the haze, enemy attack may 60% miss and 40% reduced damage taken by ally by 50%",
+        name: "Terror Haze",
+        description: "Sprays dark haze in a large chosen area.",
+        sideEffects: "When the ally or user is inside the haze, enemy attacks have a 60% miss chance, and allies take 50% less damage from enemies.",
       }
-      ],
+    ],
     color: "#2c3e50", 
     glowColor: "#34495e",
   },
-
-
-  
-  // ... Add other characters with similar skill structure
 ];
-    
- 
-
 
 // Modal references
 const modal = document.getElementById("character-modal");
@@ -151,8 +137,10 @@ function openModal(characterIndex) {
 // Function to open the skills modal and set the skill data
 function openSkillsModal(characterIndex) {
   const character = characters[characterIndex];
-  const skill = character.skills[0]; // Assuming there's only one skill for simplicity
 
+  // For now, assuming one skill is selected, you can extend it for multiple skills
+  const skill = character.skills[0]; // Assuming you want the first skill for now
+  
   // Set skill details in the skills modal
   document.getElementById("skill-name").innerText = skill.name;
   document.getElementById("skill-description").innerText = skill.description;
@@ -186,5 +174,8 @@ skillsModal.addEventListener("click", function(e) {
 
 // Add event listeners to each slice
 document.querySelectorAll(".slice").forEach((slice, index) => {
-  slice.addEventListener("click", () => openModal(index));
+  slice.addEventListener("click", () => {
+    const characterIndex = parseInt(slice.getAttribute("data-character")) - 1; // get character index
+    openModal(characterIndex); // Pass the index to the modal function
+  });
 });
