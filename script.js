@@ -6,10 +6,22 @@ const characters = [
     intimacy: 0,
     weapon: "Sword",
     element: "Fire",
-    skills: "Flame Strike",
-    color: "#ff7e5f", // Gradient color
-    glowColor: "#ff3b30", // Glow color
+    skills: [
+      {
+        name: "Flame Strike",
+        description: "A powerful fire-based attack that damages all enemies in a radius.",
+        sideEffects: "Can cause burn damage over time.",
+      }
+    ],
+    color: "#ff7e5f", 
+    glowColor: "#ff3b30",
   },
+
+
+
+
+
+   },
   {
     name: "Character 2",
     gif: "https://hondaaja456.github.io/character-1-project/tigor.jpg",
@@ -17,7 +29,14 @@ const characters = [
     intimacy: 5,
     weapon: "Bow",
     element: "Wind",
-    skills: "Arrow Storm",
+    skills: [
+      {
+        name: "arrow storm",
+        description: "shots a magic arrow upwards splitting to thousands causing a storm of arrows coantinues damage in directed area.",
+        sideEffects: "causing a bouncing air magic to another foe damage when hits foe companion",
+      }
+    ],
+    
     color: "#feb47b", 
     glowColor: "#f39c12",
   },
@@ -28,7 +47,13 @@ const characters = [
     intimacy: 10,
     weapon: "Hammer",
     element: "Earth",
-    skills: "Earthquake",
+    skills: [
+      {
+        name: "tetonic shock",
+        description: "meelee aoe damage surrounds big range of area.",
+        sideEffects: "slows enemy when it hits by 70% in 3 seconds, and buff your attack damage by 30% in 7s",
+      }
+    ],
     color: "#8e44ad", 
     glowColor: "#9b59b6",
   },
@@ -39,7 +64,12 @@ const characters = [
     intimacy: 15,
     weapon: "Staff",
     element: "Water",
-    skills: "Tidal Wave",
+    skills: [
+      {
+        name: "tidal wave",
+        description: "dash towards foe with aquatic wave in high speed..",
+        sideEffects: "gives you a sheild 15% of your health, knocking back foe back.",
+      }
     color: "#3498db", 
     glowColor: "#2980b9",
   },
@@ -65,7 +95,14 @@ const characters = [
     color: "#2c3e50", 
     glowColor: "#34495e",
   },
+
+
+  
+  // ... Add other characters with similar skill structure
 ];
+    
+ 
+
 
 // Modal references
 const modal = document.getElementById("character-modal");
