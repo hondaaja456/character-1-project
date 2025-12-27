@@ -13,40 +13,57 @@
 
     <!-- Patterns for GIFs -->
     <defs>
-      <pattern id="char1" patternUnits="userSpaceOnUse" width="200" height="200">
-        <image href="https://hondaaja456.github.io/character-1-project/tigor.jpg"  x="-50"
-  y="-50"
-  width="170"
-  height="170"
-  transform="rotate(-7 100 100)"
-  preserveAspectRatio="xMidYMid meet" preserveAspectRatio="xMidYMid slice"/>
-      </pattern>
-      <pattern id="char2" patternUnits="userSpaceOnUse" width="200" height="200">
-        <image href="char2.gif" width="200" height="200" preserveAspectRatio="xMidYMid slice"/>
-      </pattern>
-      <pattern id="char3" patternUnits="userSpaceOnUse" width="200" height="200">
-        <image href="char3.gif" width="200" height="200" preserveAspectRatio="xMidYMid slice"/>
-      </pattern>
-      <pattern id="char4" patternUnits="userSpaceOnUse" width="200" height="200">
-        <image href="char4.gif" width="200" height="200" preserveAspectRatio="xMidYMid slice"/>
-      </pattern>
-      <pattern id="char5" patternUnits="userSpaceOnUse" width="200" height="200">
-        <image href="char5.gif" width="200" height="200" preserveAspectRatio="xMidYMid slice"/>
-      </pattern>
-      <pattern id="char6" patternUnits="userSpaceOnUse" width="200" height="200">
-        <image href="char6.gif" width="200" height="200" preserveAspectRatio="xMidYMid slice"/>
-      </pattern>
+     <pattern id="char1" patternUnits="userSpaceOnUse" width="200" height="200">
+    <image href="https://hondaaja456.github.io/character-1-project/tigor.jpg" x="-50" y="-50" width="170" height="170" transform="rotate(-7 100 100)" preserveAspectRatio="xMidYMid meet" />
+  </pattern>
+
+  <pattern id="char2" patternUnits="userSpaceOnUse" width="200" height="200">
+    <image href="char2.gif" width="200" height="200" preserveAspectRatio="xMidYMid slice"/>
+  </pattern>
+
+  <pattern id="char3" patternUnits="userSpaceOnUse" width="200" height="200">
+    <image href="char3.gif" width="200" height="200" preserveAspectRatio="xMidYMid slice"/>
+  </pattern>
+
+  <pattern id="char4" patternUnits="userSpaceOnUse" width="200" height="200">
+    <image href="char4.gif" width="200" height="200" preserveAspectRatio="xMidYMid slice"/>
+  </pattern>
+
+  <pattern id="char5" patternUnits="userSpaceOnUse" width="200" height="200">
+    <image href="char5.gif" width="200" height="200" preserveAspectRatio="xMidYMid slice"/>
+  </pattern>
+
+  <pattern id="char6" patternUnits="userSpaceOnUse" width="200" height="200">
+    <image href="char6.gif" width="200" height="200" preserveAspectRatio="xMidYMid slice"/>
+  </pattern>
+
+      
+      <!-- Additional character GIFs... -->
     </defs>
 
     <!-- Slices -->
     <path d="M0 0 L100 0 A100 100 0 0 1 50 86 Z" fill="url(#char1)" class="slice" data-character="1"/>
-    <path d="M0 0 L50 86 A100 100 0 0 1 -50 86 Z" fill="url(#char2)" class="slice" data-character="2"/>
-    <path d="M0 0 L-50 86 A100 100 0 0 1 -100 0 Z" fill="url(#char3)" class="slice" data-character="3"/>
-    <path d="M0 0 L-100 0 A100 100 0 0 1 -50 -86 Z" fill="url(#char4)" class="slice" data-character="4"/>
-    <path d="M0 0 L-50 -86 A100 100 0 0 1 50 -86 Z" fill="url(#char5)" class="slice" data-character="5"/>
-    <path d="M0 0 L50 -86 A100 100 0 0 1 100 0 Z" fill="url(#char6)" class="slice" data-character="6"/>
-
+    <!-- Other slices... -->
   </svg>
+</div>
+
+<!-- Modal for Character Information -->
+<div id="character-modal" class="modal">
+  <div class="modal-content">
+    <span id="close-modal" class="close">&times;</span>
+    
+    <div class="modal-left">
+      <img id="character-gif" src="" alt="Character GIF" />
+    </div>
+    <div class="modal-right">
+      <h2 id="character-name">Character Name</h2>
+      <p><strong>Level:</strong> <span id="character-level">1</span></p>
+      <p><strong>Intimacy:</strong> <span id="character-intimacy">0</span></p>
+      <p><strong>Weapon:</strong> <span id="character-weapon">Sword</span></p>
+      <p><strong>Element:</strong> <span id="character-element">Fire</span></p>
+      <p><strong>Skills:</strong> <span id="character-skills">Flame Strike</span></p>
+    </div>
+  </div>
 </div>
 
 <script src="script.js"></script>
