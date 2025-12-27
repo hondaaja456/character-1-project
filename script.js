@@ -7,7 +7,8 @@ const characters = [
     weapon: "Sword",
     element: "Fire",
     skills: "Flame Strike",
-    color: "#ff7e5f", // Specific color for the background gradient
+    color: "#ff7e5f", // Gradient color
+    glowColor: "#ff3b30", // Glow color
   },
   {
     name: "Character 2",
@@ -17,7 +18,8 @@ const characters = [
     weapon: "Bow",
     element: "Wind",
     skills: "Arrow Storm",
-    color: "#feb47b",
+    color: "#feb47b", 
+    glowColor: "#f39c12",
   },
   {
     name: "Character 3",
@@ -27,7 +29,8 @@ const characters = [
     weapon: "Hammer",
     element: "Earth",
     skills: "Earthquake",
-    color: "#8e44ad",
+    color: "#8e44ad", 
+    glowColor: "#9b59b6",
   },
   {
     name: "Character 4",
@@ -37,7 +40,8 @@ const characters = [
     weapon: "Staff",
     element: "Water",
     skills: "Tidal Wave",
-    color: "#3498db",
+    color: "#3498db", 
+    glowColor: "#2980b9",
   },
   {
     name: "Character 5",
@@ -47,7 +51,8 @@ const characters = [
     weapon: "Dagger",
     element: "Light",
     skills: "Holy Light",
-    color: "#f1c40f",
+    color: "#f1c40f", 
+    glowColor: "#f39c12",
   },
   {
     name: "Character 6",
@@ -57,7 +62,8 @@ const characters = [
     weapon: "Axe",
     element: "Dark",
     skills: "Shadow Strike",
-    color: "#2c3e50",
+    color: "#2c3e50", 
+    glowColor: "#34495e",
   },
 ];
 
@@ -82,13 +88,36 @@ function openModal(characterIndex) {
   document.getElementById("character-element").innerText = character.element;
   document.getElementById("character-skills").innerText = character.skills;
 
-  // Show the modal
+  // Set the glow effect (color change for the modal)
+  modalContent.style.boxShadow = `0 0 15px ${character.glowColor}, 0 0 30px ${character.glowColor}, 0 0 50px ${character.glowColor}`;
+
+  // Show the modal with a fade-in effect
   modal.style.display = "flex";
+  modal.style.opacity = 0;
+  setTimeout(() => {
+    modal.style.transition = "opacity 0.3s ease-in-out";
+    modal.style.opacity = 1;
+  }, 10); // Small delay to allow transition to apply
 }
 
 // Function to close the modal
 closeModal.addEventListener("click", function() {
-  modal.style.display = "none";
+  modal.style.transition = "opacity 0.3s ease-in-out";
+  modal.style.opacity = 0;
+  setTimeout(() => {
+    modal.style.display = "none";
+  }, 300); // Wait for the fade-out to complete
+});
+
+// Allow closing modal when clicking outside the modal content
+modal.addEventListener("click", function(e) {
+  if (e.target === modal) {  // Check if the click is outside the modal content
+    modal.style.transition = "opacity 0.3s ease-in-out";
+    modal.style.opacity = 0;
+    setTimeout(() => {
+      modal.style.display = "none";
+    }, 300); // Wait for the fade-out to complete
+  }
 });
 
 // Add event listeners to each slice
