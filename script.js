@@ -19,12 +19,47 @@ const characters = [
     skills: "Arrow Storm",
     color: "#feb47b",
   },
-  // Add other characters here...
+  {
+    name: "Character 3",
+    gif: "char3.gif",
+    level: 3,
+    intimacy: 10,
+    weapon: "Hammer",
+    element: "Earth",
+    skills: "Earthquake",
+    color: "#8e44ad",
+  },
+  {
+    name: "Character 4",
+    gif: "char4.gif",
+    level: 4,
+    intimacy: 15,
+    weapon: "Staff",
+    element: "Water",
+    skills: "Tidal Wave",
+    color: "#3498db",
+  },
+  {
+    name: "Character 5",
+    gif: "char5.gif",
+    level: 5,
+    intimacy: 20,
+    weapon: "Dagger",
+    element: "Light",
+    skills: "Holy Light",
+    color: "#f1c40f",
+  },
+  {
+    name: "Character 6",
+    gif: "char6.gif",
+    level: 6,
+    intimacy: 25,
+    weapon: "Axe",
+    element: "Dark",
+    skills: "Shadow Strike",
+    color: "#2c3e50",
+  },
 ];
-
-// Select the modal and close button
-const modal = document.getElementById("character-modal");
-const closeModal = document.getElementById("close-modal");
 
 // Function to open the modal and set the character data
 function openModal(characterIndex) {
@@ -46,11 +81,6 @@ function openModal(characterIndex) {
   // Show the modal
   modal.style.display = "flex";
 }
-
-// Function to close the modal
-closeModal.addEventListener("click", function() {
-  modal.style.display = "none";
-});
 
 // Event listener to open modal when a slice is clicked
 document.querySelectorAll(".slice").forEach((slice, index) => {
