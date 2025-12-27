@@ -28,6 +28,7 @@ const characters = [
         name: "Arrow Storm",
         description: "Shoots a magic arrow upwards, splitting into thousands causing a storm of arrows.",
         sideEffects: "Causes a bouncing air magic to hit another foe, damaging them.",
+         bgcolor: "#feb47b", 
       }
     ],
     color: "#feb47b", 
@@ -45,6 +46,7 @@ const characters = [
         name: "Tectonic Shock",
         description: "Melee AOE damage surrounds a large area of effect.",
         sideEffects: "Slows enemy by 70% for 3 seconds, and buffs your attack damage by 30% for 7 seconds.",
+        bgcolor: "#8e44ad", 
       }
     ],
     color: "#8e44ad", 
@@ -62,6 +64,7 @@ const characters = [
         name: "Tidal Wave",
         description: "Dash towards foe with an aquatic wave at high speed.",
         sideEffects: "Gives you a shield worth 15% of your health and knocks back the foe.",
+        bgcolor: "#3498db", 
       }
     ],
     color: "#3498db", 
@@ -79,6 +82,7 @@ const characters = [
         name: "Celestial Beam",
         description: "Shoots a line magic beam in a very long range area.",
         sideEffects: "When it hits an enemy, it causes damage and immobilizes the enemy. When it hits an ally, it heals them by 50% of their health.",
+         bgcolor: "#f1c40f", 
       }
     ],
     color: "#f1c40f", 
@@ -96,6 +100,7 @@ const characters = [
         name: "Terror Haze",
         description: "Sprays dark haze in a large chosen area.",
         sideEffects: "When the ally or user is inside the haze, enemy attacks have a 60% miss chance, and allies take 50% less damage from enemies.",
+         bgcolor: "#2c3e50", 
       }
     ],
     color: "#2c3e50", 
@@ -145,6 +150,9 @@ function openSkillsModal(characterIndex) {
   document.getElementById("skill-name").innerText = skill.name;
   document.getElementById("skill-description").innerText = skill.description;
   document.getElementById("skill-side-effects").innerText = skill.sideEffects;
+
+  // Optionally, you could also change the background color or other styles
+  skillsModal.querySelector(".modal-content").style.backgroundColor = skill.bgcolor;
 
   // Show the skills modal
   skillsModal.style.display = "flex";
