@@ -106,7 +106,9 @@ const characters = [
 
 // Modal references
 const modal = document.getElementById("character-modal");
+const skillsModal = document.getElementById("skills-modal");
 const closeModal = document.getElementById("close-modal");
+const closeSkillsModal = document.getElementById("close-skills-modal");
 
 // Function to open the modal and set the character data
 function openModal(characterIndex) {
@@ -123,37 +125,49 @@ function openModal(characterIndex) {
   document.getElementById("character-intimacy").innerText = character.intimacy;
   document.getElementById("character-weapon").innerText = character.weapon;
   document.getElementById("character-element").innerText = character.element;
-  document.getElementById("character-skills").innerText = character.skills;
 
-  // Set the glow effect (color change for the modal)
-  modalContent.style.boxShadow = `0 0 15px ${character.glowColor}, 0 0 30px ${character.glowColor}, 0 0 50px ${character.glowColor}`;
+  // Set the skills and add a click event to open skills details
+  const skillsElement = document.getElementById("character-skills");
+  skillsElement.innerText = character.skills.map(skill => skill.name).join(", ");
+  skillsElement.addEventListener("click", () => openSkillsModal(characterIndex));
 
-  // Show the modal with a fade-in effect
+  // Show the character modal
   modal.style.display = "flex";
-  modal.style.opacity = 0;
-  setTimeout(() => {
-    modal.style.transition = "opacity 0.3s ease-in-out";
-    modal.style.opacity = 1;
-  }, 10); // Small delay to allow transition to apply
 }
 
-// Function to close the modal
+// Function to open the skills modal and set the skill data
+function openSkillsModal(characterIndex) {
+  const character = characters[characterIndex];
+  const skill = character.skills[0]; // Assuming there's only one skill for simplicity
+
+  // Set skill details in the skills modal
+  document.getElementById("skill-name").innerText = skill.name;
+  document.getElementById("skill-description").innerText = skill.description;
+  document.getElementById("skill-side-effects").innerText = skill.sideEffects;
+
+  // Show the skills modal
+  skillsModal.style.display = "flex";
+}
+
+// Function to close the modals
 closeModal.addEventListener("click", function() {
-  modal.style.transition = "opacity 0.3s ease-in-out";
-  modal.style.opacity = 0;
-  setTimeout(() => {
-    modal.style.display = "none";
-  }, 300); // Wait for the fade-out to complete
+  modal.style.display = "none";
+});
+
+closeSkillsModal.addEventListener("click", function() {
+  skillsModal.style.display = "none";
 });
 
 // Allow closing modal when clicking outside the modal content
 modal.addEventListener("click", function(e) {
-  if (e.target === modal) {  // Check if the click is outside the modal content
-    modal.style.transition = "opacity 0.3s ease-in-out";
-    modal.style.opacity = 0;
-    setTimeout(() => {
-      modal.style.display = "none";
-    }, 300); // Wait for the fade-out to complete
+  if (e.target === modal) {
+    modal.style.display = "none";
+  }
+});
+
+skillsModal.addEventListener("click", function(e) {
+  if (e.target === skillsModal) {
+    skillsModal.style.display = "none";
   }
 });
 
