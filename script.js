@@ -70,6 +70,7 @@ const characters = [
         description: "dash towards foe with aquatic wave in high speed..",
         sideEffects: "gives you a sheild 15% of your health, knocking back foe back.",
       }
+      ],
     color: "#3498db", 
     glowColor: "#2980b9",
   },
@@ -80,7 +81,13 @@ const characters = [
     intimacy: 20,
     weapon: "Dagger",
     element: "Light",
-    skills: "Holy Light",
+    skills: [
+      {
+        name: "celestial beam",
+        description: "shots 1 line magic beam in a very long range area",
+        sideEffects: "when hits foe it will cause damage and immobilized enemy in that area, when its hits ally it will heals them 50% of their health",
+      }
+    ],
     color: "#f1c40f", 
     glowColor: "#f39c12",
   },
@@ -91,7 +98,13 @@ const characters = [
     intimacy: 25,
     weapon: "Axe",
     element: "Dark",
-    skills: "Shadow Strike",
+    skills: [
+      {
+        name: "terror haze",
+        description: "spray out dark haze in large choosen area",
+        sideEffects: "when allly or user inside the haze, enemy attack may 60% miss and 40% reduced damage taken by ally by 50%",
+      }
+      ],
     color: "#2c3e50", 
     glowColor: "#34495e",
   },
