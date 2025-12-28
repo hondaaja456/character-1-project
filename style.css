@@ -48,7 +48,6 @@ body {
   padding: 20px;
   display: flex;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  background: linear-gradient(to right, #ff7e5f, #feb47b); /* Default gradient */
   animation: glow 2s infinite alternate; /* Glow animation */
   transition: box-shadow 0.3s ease; /* Glow transition effect when modal opens */
 }
