@@ -145,6 +145,8 @@ function openSkillsModal(characterIndex) {
 
   // For now, assuming one skill is selected, you can extend it for multiple skills
   const skill = character.skills[0]; // Assuming you want the first skill for now
+
+    console.log('Setting bgcolor to:', skill.bgcolor);
   
   // Set skill details in the skills modal
   document.getElementById("skill-name").innerText = skill.name;
