@@ -7,7 +7,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: #f0f0f0;
+  background:  linear-gradient(#454545, #787878);
 }
 
 .wheel-container {
