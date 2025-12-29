@@ -1,4 +1,11 @@
 /* General Styles */
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -6,7 +13,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
   background: linear-gradient(circle, #454545, #787878);
 }
 
