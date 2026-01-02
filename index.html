@@ -282,7 +282,8 @@
         .ice { background: linear-gradient(135deg, #a5f3fc, #3b82f6); }
         .poison { background: linear-gradient(135deg, #a855f7, #7e22ce); }
         .dark { background: linear-gradient(135deg, #4b5563, #111827); }
-        .light { background: linear-gradient(135deg, #fef08a, #facc15); }
+        .light { background: linear-gradient(135deg, #fffdf0, #fff2bf); }
+        .none { background: linear-gradient(135deg, #9e9e9e, #cfcfcf); }
     </style>
 </head>
 <body>
@@ -317,7 +318,7 @@
         // Character data
         const characters = [
             { id: 1, name: 'Character 1', elements: ['fire', 'light'] },
-            { id: 2, name: 'Character 2', elements: ['water', 'ice'] },
+            { id: 2, name: 'Character 2', elements: ['none'] },
             { id: 3, name: 'Character 3', elements: ['electric', 'light'] },
             { id: 4, name: 'Character 4', elements: ['nature', 'earth'] },
             { id: 5, name: 'Character 5', elements: ['fire', 'dark'] },
@@ -331,6 +332,7 @@
             { id: 13, name: 'Character 13', elements: ['water', 'nature'] },
             { id: 14, name: 'Character 14', elements: ['ice', 'dark'] },
             { id: 15, name: 'Character 15', elements: ['poison', 'earth'] }
+            { id: 16, name: 'Character 15', elements: ['water', 'ice'] }
         ];
 
         // Element data
@@ -345,6 +347,7 @@
             { name: 'poison', icon: '☠️' },
             { name: 'dark', icon: '🌙' },
             { name: 'light', icon: '☀️' }
+            { name: 'none', icon: '🔘' }
         ];
 
         let selectedElement = null;
