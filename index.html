@@ -1,92 +1,424 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Character Wheel</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Character Selection</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1e1b4b 0%, #581c87 50%, #831843 100%);
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Sci-fi Background Effects */
+        .bg-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .bg-overlay::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at top right, rgba(6, 182, 212, 0.5), transparent);
+        }
+
+        .bg-overlay::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at bottom left, rgba(168, 85, 247, 0.5), transparent);
+        }
+
+        .grid-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(99, 102, 241, 0.3) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(99, 102, 241, 0.3) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.2;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(90deg, rgba(49, 46, 129, 0.8), rgba(88, 28, 135, 0.8));
+            backdrop-filter: blur(12px);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, #22d3ee, #a855f7);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo span {
+            color: white;
+            font-weight: bold;
+            font-size: 28px;
+        }
+
+        .header-text {
+            margin-left: 20px;
+        }
+
+        .header-text h1 {
+            color: white;
+            font-size: 32px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .header-text p {
+            color: #67e8f9;
+            font-size: 14px;
+            margin-top: 4px;
+        }
+
+        /* Element Filters */
+        .filters {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .filter-btn {
+            padding: 16px;
+            border-radius: 12px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            backdrop-filter: blur(8px);
+        }
+
+        .filter-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .filter-btn.active {
+            border-color: white;
+            transform: scale(1.05);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .filter-icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .filter-name {
+            color: white;
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Character Grid */
+        .character-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 24px;
+            margin-bottom: 30px;
+        }
+
+        .character {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, rgba(55, 65, 81, 0.5), rgba(17, 24, 39, 0.5));
+            backdrop-filter: blur(12px);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 4px solid rgba(99, 102, 241, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .character::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.3), rgba(236, 72, 153, 0.3));
+            transition: all 0.3s ease;
+        }
+
+        .character:hover {
+            transform: scale(1.1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            border-color: #22d3ee;
+        }
+
+        .character:hover::before {
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.4), rgba(168, 85, 247, 0.4));
+        }
+
+        .character-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+        }
+
+        .character-icon {
+            font-size: 60px;
+            margin-bottom: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .character:hover .character-icon {
+            transform: scale(1.1);
+        }
+
+        .character-name {
+            color: white;
+            font-weight: bold;
+            font-size: 11px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .character:hover .character-name {
+            opacity: 1;
+        }
+
+        .character-elements {
+            position: absolute;
+            bottom: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 4px;
+            z-index: 11;
+        }
+
+        .element-badge {
+            width: 24px;
+            height: 24px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .filter-info {
+            text-align: center;
+            margin-top: 24px;
+        }
+
+        .filter-info p {
+            color: #67e8f9;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Element specific colors */
+        .fire { background: linear-gradient(135deg, #f97316, #dc2626); }
+        .water { background: linear-gradient(135deg, #60a5fa, #2563eb); }
+        .electric { background: linear-gradient(135deg, #fde047, #eab308); }
+        .nature { background: linear-gradient(135deg, #4ade80, #16a34a); }
+        .earth { background: linear-gradient(135deg, #d97706, #92400e); }
+        .air { background: linear-gradient(135deg, #67e8f9, #06b6d4); }
+        .ice { background: linear-gradient(135deg, #a5f3fc, #3b82f6); }
+        .poison { background: linear-gradient(135deg, #a855f7, #7e22ce); }
+        .dark { background: linear-gradient(135deg, #4b5563, #111827); }
+        .light { background: linear-gradient(135deg, #fef08a, #facc15); }
+    </style>
 </head>
 <body>
+    <div class="bg-overlay"></div>
+    <div class="grid-pattern"></div>
 
-<div class="wheel-container">
-  <svg viewBox="-100 -100 200 200" class="wheel">
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">
+                <span>AC</span>
+            </div>
+            <div class="header-text">
+                <h1>ANIME CHARACTERS</h1>
+                <p>Select Your Fighter</p>
+            </div>
+        </div>
 
-    <!-- Patterns for GIFs -->
-    <defs>
-     <pattern id="char1" patternUnits="userSpaceOnUse" width="200" height="200">
-    <image href="https://hondaaja456.github.io/character-1-project/tigor.jpg" x="-50" y="-50" width="170" height="170" transform="rotate(-7 100 100)" preserveAspectRatio="xMidYMid meet" />
-  </pattern>
+        <!-- Element Filters -->
+        <div class="filters" id="filters"></div>
 
-  <pattern id="char2" patternUnits="userSpaceOnUse" width="200" height="200">
-    <image href="https://hondaaja456.github.io/character-1-project/tigor.jpg" width="200" height="200" preserveAspectRatio="xMidYMid slice"/>
-  </pattern>
+        <!-- Character Grid -->
+        <div class="character-grid" id="characterGrid"></div>
 
-  <pattern id="char3" patternUnits="userSpaceOnUse" width="200" height="200">
-    <image href="https://hondaaja456.github.io/character-1-project/tigor.jpg" width="200" height="200" preserveAspectRatio="xMidYMid slice"/>
-  </pattern>
-
-  <pattern id="char4" patternUnits="userSpaceOnUse" width="200" height="200">
-    <image href="https://hondaaja456.github.io/character-1-project/tigor.jpg" width="200" height="200" preserveAspectRatio="xMidYMid slice"/>
-  </pattern>
-
-  <pattern id="char5" patternUnits="userSpaceOnUse" width="200" height="200">
-    <image href="https://hondaaja456.github.io/character-1-project/tigor.jpg" width="200" height="200" preserveAspectRatio="xMidYMid slice"/>
-  </pattern>
-
-  <pattern id="char6" patternUnits="userSpaceOnUse" width="200" height="200">
-    <image href="https://hondaaja456.github.io/character-1-project/tigor.jpg" width="200" height="200" preserveAspectRatio="xMidYMid slice"/>
-  </pattern>
-
-      
-      <!-- Additional character GIFs... -->
-    </defs>
-
-
-
-  <!-- Slices -->
-  <path d="M0 0 L100 0 A100 100 0 0 1 50 86 Z" fill="url(#char1)" class="slice" data-character="1"/>
-  <path d="M0 0 L50 86 A100 100 0 0 1 -50 86 Z" fill="url(#char2)" class="slice" data-character="2"/>
-  <path d="M0 0 L-50 86 A100 100 0 0 1 -100 0 Z" fill="url(#char3)" class="slice" data-character="3"/>
-  <path d="M0 0 L-100 0 A100 100 0 0 1 -50 -86 Z" fill="url(#char4)" class="slice" data-character="4"/>
-  <path d="M0 0 L-50 -86 A100 100 0 0 1 50 -86 Z" fill="url(#char5)" class="slice" data-character="5"/>
-  <path d="M0 0 L50 -86 A100 100 0 0 1 100 0 Z" fill="url(#char6)" class="slice" data-character="6"/>
-
-
-    <!-- Other slices... -->
-  </svg>
-</div>
-
-<!-- Modal for Character Information -->
-<div id="character-modal" class="modal">
-  <div class="modal-content">
-    <span id="close-modal" class="close">&times;</span>
-    
-    <div class="modal-left">
-      <img id="character-gif" src="" alt="Character GIF" />
+        <!-- Filter Info -->
+        <div class="filter-info hidden" id="filterInfo">
+            <p id="filterText"></p>
+        </div>
     </div>
-    <div class="modal-right">
-      <h2 id="character-name">Character Name</h2>
-      <p><strong>Level:</strong> <span id="character-level">1</span></p>
-      <p><strong>Intimacy:</strong> <span id="character-intimacy">0</span></p>
-      <p><strong>Weapon:</strong> <span id="character-weapon">Sword</span></p>
-      <p><strong>Element:</strong> <span id="character-element">Fire</span></p>
-      <p><strong>Skills:</strong> <span id="character-skills" class="skills-link">Flame Strike</span></p>
-    </div>
-  </div>
-</div>
 
+    <script>
+        // Character data
+        const characters = [
+            { id: 1, name: 'Character 1', elements: ['fire', 'light'] },
+            { id: 2, name: 'Character 2', elements: ['water', 'ice'] },
+            { id: 3, name: 'Character 3', elements: ['electric', 'light'] },
+            { id: 4, name: 'Character 4', elements: ['nature', 'earth'] },
+            { id: 5, name: 'Character 5', elements: ['fire', 'dark'] },
+            { id: 6, name: 'Character 6', elements: ['air', 'electric'] },
+            { id: 7, name: 'Character 7', elements: ['ice', 'water'] },
+            { id: 8, name: 'Character 8', elements: ['poison', 'nature'] },
+            { id: 9, name: 'Character 9', elements: ['dark', 'poison'] },
+            { id: 10, name: 'Character 10', elements: ['light', 'fire'] },
+            { id: 11, name: 'Character 11', elements: ['earth', 'nature'] },
+            { id: 12, name: 'Character 12', elements: ['electric', 'air'] },
+            { id: 13, name: 'Character 13', elements: ['water', 'nature'] },
+            { id: 14, name: 'Character 14', elements: ['ice', 'dark'] },
+            { id: 15, name: 'Character 15', elements: ['poison', 'earth'] }
+        ];
 
-  <div id="skills-modal" class="modal">
-  <div class="modal-content">
-    <span id="close-skills-modal" class="close">&times;</span>
-    <div class="modal-left">
-      <h2 id="skill-name">Skill Name</h2>
-      <p><strong>Description:</strong> <span id="skill-description">This is a detailed description of the skill.</span></p>
-      <p><strong>Side Effects:</strong> <span id="skill-side-effects">Potential side effects of the skill.</span></p>
-    </div>
-  </div>
-</div>
+        // Element data
+        const elements = [
+            { name: 'fire', icon: '🔥' },
+            { name: 'water', icon: '💧' },
+            { name: 'electric', icon: '⚡' },
+            { name: 'nature', icon: '🍃' },
+            { name: 'earth', icon: '⛰️' },
+            { name: 'air', icon: '💨' },
+            { name: 'ice', icon: '❄️' },
+            { name: 'poison', icon: '☠️' },
+            { name: 'dark', icon: '🌙' },
+            { name: 'light', icon: '☀️' }
+        ];
 
-<script src="script.js"></script>
+        let selectedElement = null;
+
+        // Create filter buttons
+        const filtersContainer = document.getElementById('filters');
+        elements.forEach(element => {
+            const btn = document.createElement('div');
+            btn.className = `filter-btn ${element.name}`;
+            btn.innerHTML = `
+                <div class="filter-icon">${element.icon}</div>
+                <div class="filter-name">${element.name}</div>
+            `;
+            btn.onclick = () => toggleFilter(element.name, btn);
+            filtersContainer.appendChild(btn);
+        });
+
+        // Toggle filter
+        function toggleFilter(elementName, btn) {
+            const allBtns = document.querySelectorAll('.filter-btn');
+            
+            if (selectedElement === elementName) {
+                selectedElement = null;
+                btn.classList.remove('active');
+            } else {
+                allBtns.forEach(b => b.classList.remove('active'));
+                selectedElement = elementName;
+                btn.classList.add('active');
+            }
+            
+            renderCharacters();
+        }
+
+        // Render characters
+        function renderCharacters() {
+            const grid = document.getElementById('characterGrid');
+            const filterInfo = document.getElementById('filterInfo');
+            const filterText = document.getElementById('filterText');
+            
+            grid.innerHTML = '';
+            
+            const filteredCharacters = selectedElement
+                ? characters.filter(char => char.elements.includes(selectedElement))
+                : characters;
+            
+            filteredCharacters.forEach(character => {
+                const charDiv = document.createElement('div');
+                charDiv.className = 'character';
+                charDiv.innerHTML = `
+                    <div class="character-content">
+                        <div class="character-icon">👤</div>
+                        <div class="character-name">${character.name}</div>
+                    </div>
+                    <div class="character-elements">
+                        ${character.elements.map(elem => {
+                            const elemData = elements.find(e => e.name === elem);
+                            return `<div class="element-badge">${elemData.icon}</div>`;
+                        }).join('')}
+                    </div>
+                `;
+                grid.appendChild(charDiv);
+            });
+
+            // Update filter info
+            if (selectedElement) {
+                filterInfo.classList.remove('hidden');
+                filterText.textContent = `Showing ${filteredCharacters.length} character${filteredCharacters.length !== 1 ? 's' : ''} with ${selectedElement} element`;
+            } else {
+                filterInfo.classList.add('hidden');
+            }
+        }
+
+        // Initial render
+        renderCharacters();
+    </script>
 </body>
 </html>
