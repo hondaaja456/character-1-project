@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anime Character Selection</title>
-        <style>
+    <style>
         * {
             margin: 0;
             padding: 0;
@@ -322,37 +322,37 @@
     <script>
         // Character data
         const characters = [
-            { id: 1, name: 'Character 1', elements: ['fire', 'light'] },
-            { id: 2, name: 'Character 2', elements: ['none'] },
-            { id: 3, name: 'Character 3', elements: ['electric', 'light'] },
-            { id: 4, name: 'Character 4', elements: ['nature', 'earth'] },
-            { id: 5, name: 'Character 5', elements: ['fire', 'dark'] },
-            { id: 6, name: 'Character 6', elements: ['air', 'electric'] },
-            { id: 7, name: 'Character 7', elements: ['ice', 'water'] },
-            { id: 8, name: 'Character 8', elements: ['poison', 'nature'] },
-            { id: 9, name: 'Character 9', elements: ['dark', 'poison'] },
-            { id: 10, name: 'Character 10', elements: ['light', 'fire'] },
-            { id: 11, name: 'Character 11', elements: ['earth', 'nature'] },
-            { id: 12, name: 'Character 12', elements: ['electric', 'air'] },
-            { id: 13, name: 'Character 13', elements: ['water', 'nature'] },
-            { id: 14, name: 'Character 14', elements: ['ice', 'dark'] },
-            { id: 15, name: 'Character 15', elements: ['poison', 'earth'] },
-            { id: 16, name: 'Character 16', elements: ['nature'], image: 'tigor.jpg }
+            { id: 1, name: 'Character 1', elements: ['fire', 'light'], image: 'character1.jpg' },
+            { id: 2, name: 'Character 2', elements: ['none'], image: 'character2.jpg' },
+            { id: 3, name: 'Character 3', elements: ['electric', 'light'], image: 'character3.jpg' },
+            { id: 4, name: 'Character 4', elements: ['nature', 'earth'], image: 'character4.jpg' },
+            { id: 5, name: 'Character 5', elements: ['fire', 'dark'], image: 'character5.jpg' },
+            { id: 6, name: 'Character 6', elements: ['air', 'electric'], image: 'character6.jpg' },
+            { id: 7, name: 'Character 7', elements: ['ice', 'water'], image: 'character7.jpg' },
+            { id: 8, name: 'Character 8', elements: ['poison', 'nature'], image: 'character8.jpg' },
+            { id: 9, name: 'Character 9', elements: ['dark', 'poison'], image: 'character9.jpg' },
+            { id: 10, name: 'Character 10', elements: ['light', 'fire'], image: 'character10.jpg' },
+            { id: 11, name: 'Character 11', elements: ['earth', 'nature'], image: 'character11.jpg' },
+            { id: 12, name: 'Character 12', elements: ['electric', 'air'], image: 'character12.jpg' },
+            { id: 13, name: 'Character 13', elements: ['water', 'nature'], image: 'character13.jpg' },
+            { id: 14, name: 'Character 14', elements: ['ice', 'dark'], image: 'character14.jpg' },
+            { id: 15, name: 'Character 15', elements: ['poison', 'earth'], image: 'character15.jpg' },
+            { id: 16, name: 'Character 16', elements: ['water', 'ice'], image: 'character16.jpg' }
         ];
 
         // Element data
         const elements = [
-            { name: 'fire', icon: '🔥' },
-            { name: 'water', icon: '💧' },
-            { name: 'electric', icon: '⚡' },
-            { name: 'nature', icon: '🍃' },
-            { name: 'earth', icon: '⛰️' },
-            { name: 'air', icon: '💨' },
-            { name: 'ice', icon: '❄️' },
-            { name: 'poison', icon: '☠️' },
-            { name: 'dark', icon: '🌙' },
-            { name: 'light', icon: '☀️' },
-            { name: 'none', icon: '🔘' }
+            { name: 'fire', icon: '🔥', image: 'fire.jpg' },
+            { name: 'water', icon: '💧', image: 'water.jpg' },
+            { name: 'electric', icon: '⚡', image: 'electric.jpg' },
+            { name: 'nature', icon: '🍃', image: 'nature.jpg' },
+            { name: 'earth', icon: '⛰️', image: 'earth.jpg' },
+            { name: 'air', icon: '💨', image: 'air.jpg' },
+            { name: 'ice', icon: '❄️', image: 'ice.jpg' },
+            { name: 'poison', icon: '☠️', image: 'poison.jpg' },
+            { name: 'dark', icon: '🌙', image: 'dark.jpg' },
+            { name: 'light', icon: '☀️', image: 'light.jpg' },
+            { name: 'none', icon: '🔘', image: 'none.jpg' }
         ];
 
         let selectedElement = null;
@@ -363,7 +363,7 @@
             const btn = document.createElement('div');
             btn.className = `filter-btn ${element.name}`;
             btn.innerHTML = `
-                <div class="filter-icon">${element.icon}</div>
+                <img src="${element.image}" alt="${element.name}" class="filter-icon">
                 <div class="filter-name">${element.name}</div>
             `;
             btn.onclick = () => toggleFilter(element.name, btn);
@@ -403,7 +403,7 @@
                 charDiv.className = 'character';
                 charDiv.innerHTML = `
                     <div class="character-content">
-                       <img src="${character.image}" alt="${character.name}" class="character-icon">
+                        <img src="${character.image}" alt="${character.name}" class="character-icon">
                         <div class="character-name">${character.name}</div>
                     </div>
                     <div class="character-elements">
